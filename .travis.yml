@@ -12,6 +12,8 @@ addons:
                         - check
                         - splint
                         - automake
+                        - gettext
+                        - libgettextpo-dev
                         # for "make rpm"
                         - doxygen
                         - rpm
