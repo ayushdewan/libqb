@@ -12,6 +12,7 @@ addons:
                         - check
                         - splint
                         - automake
+                        - autoconf
                         - gettext
                         - libgettextpo-dev
                         # for "make rpm"
