@@ -11,6 +11,7 @@ addons:
                 packages:
                         - check
                         - splint
+                        - automake
                         # for "make rpm"
                         - doxygen
                         - rpm
