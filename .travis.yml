@@ -1,5 +1,8 @@
 sudo: false
 language: c
+os:
+        - linux
+        - linux-ppc64le
 compiler:
         - gcc
         - clang
