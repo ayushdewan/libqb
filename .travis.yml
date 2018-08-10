@@ -12,7 +12,6 @@ addons:
                         - check
                         - splint
                         - automake
-                        - cmake
                         - autoconf
                         - gettext
                         - libgettextpo-dev
@@ -25,11 +24,13 @@ script: RPMBUILDOPTS_="--nodeps --define '_without_check 1'";
         && ./configure
         && make -C lib V=1
         && make -C tests/functional/log_internal V=1 check
+        && find . -name core -delete
         && make V=1 CPPFLAGS=-Dci_dump_shm_usage distcheck
         && sed "s|RPMBUILDOPTS =|\\0 ${RPMBUILDOPTS_}|" Makefile | make -f- rpm
 
 after_failure:
         # keep an eye on issue #234 if it recidivates
+        - find . -name test-suite.log -ls -exec cat {} \;
         - for f in $(ls -1 /dev/shm/qb-test*); do ls -l "$f"; lsof -- "$f"; done
         #- ls -l /var/run/*
         - mount | grep -e /shm  #-e /var
